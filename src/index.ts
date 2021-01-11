@@ -1,12 +1,13 @@
 import express from "express";
-import router from "./router";
+import staticPage from "./staticPage";
+import thirdPartyCookie from "./thirdPartyCookie";
 
 const app = express();
+app.use(staticPage);
+app.listen(8080);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(router);
+const cookieServer = express();
+cookieServer.use(thirdPartyCookie);
+cookieServer.listen(8081);
 
-const port = process.env.PORT || 8080;
-
-app.listen(port);
+export default app;
